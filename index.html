@@ -40,15 +40,7 @@ var google = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 		   attribution: 'Google Streets'
 			});
 			
-		var markers = L.markerClusterGroup({ chunkedLoading: true });
 		
-		for (var i = 0; i < addressPoints.length; i++) {
-			var a = addressPoints[i];
-			var title = a[2];
-			var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
-			marker.bindPopup(title);
-			markers.addLayer(marker);
-		}
 
 		var baseMaps = {
 		"Google Maps" : gmaps,
