@@ -27,7 +27,36 @@
     var map = new L.Map('map');
 
 	var mb = L.tileLayer.mbTiles('demo.mbtiles').addTo(map);
+	  
+var google = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+		   maxZoom: 20,
+		   subdomains:['mt0','mt1','mt2','mt3'],
+		   attribution: 'Google Satellite'
+		   }).addTo(map);
+		   
+		   var gmaps = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+		   maxZoom: 20,
+		   subdomains:['mt0','mt1','mt2','mt3'],
+		   attribution: 'Google Streets'
+			});
+			
+		var markers = L.markerClusterGroup({ chunkedLoading: true });
+		
+		for (var i = 0; i < addressPoints.length; i++) {
+			var a = addressPoints[i];
+			var title = a[2];
+			var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
+			marker.bindPopup(title);
+			markers.addLayer(marker);
+		}
 
+		var baseMaps = {
+		"Google Maps" : gmaps,
+		"Google Satelit": google,
+		"Ortho INDO" : mb
+		};
+		
+		L.control.layers(baseMaps).addTo(map);
 	
 
   </script>
