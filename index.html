@@ -24,12 +24,9 @@
 
   <script>
 
-    var map = new L.Map('map').fitWorld();
+    var map = new L.Map('map');
 
-	var mb = L.tileLayer.mbTiles('demo.mbtiles', {
-		minZoom: 0,
-		maxZoom: 6
-	}).addTo(map);
+	var mb = L.tileLayer.mbTiles('demo.mbtiles').addTo(map);
 
 	
 
